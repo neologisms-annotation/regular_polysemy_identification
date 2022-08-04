@@ -4,12 +4,12 @@ This repository contains all the data and analysis scripts related to the study 
 The repository contains the following files:
 
 Preliminary experiment:
-preTest_analysis.R: the script used in the preliminary study to visualise the plausibility judgement data
-preTest_material.xlsx: the material used in the preliminary study
-preTest_raw_data_plausibility.txt: this file contains all the plausibility judgement data collected during the preliminary study, already sorted as to be opened in R
-preTest_raw_data_regularity.xlsx: this file contains the data about the experts' regularity assessment of our polysemy pattern: the first sheet contains the raw data, and the second contains the mean per pattern and figure
-preTest_survey_gr_a.docx: this file is a .docs transcription of the survey that the participants of the group A did for the plausibility judgement task
-preTest_survey_gr_b.docx: this file is a .docs transcription of the survey that the participants of the group B did for the plausibility judgement task
+- preTest_analysis.R: the script used in the preliminary study to visualise the plausibility judgement data
+- preTest_material.xlsx: the material used in the preliminary study
+- preTest_raw_data_plausibility.txt: this file contains all the plausibility judgement data collected during the preliminary study, already sorted as to be opened in R
+- preTest_raw_data_regularity.xlsx: this file contains the data about the experts' regularity assessment of our polysemy pattern: the first sheet contains the raw data, and the second contains the mean per pattern and figure
+- preTest_survey_gr_a.docx: this file is a .docs transcription of the survey that the participants of the group A did for the plausibility judgement task
+- preTest_survey_gr_b.docx: this file is a .docs transcription of the survey that the participants of the group B did for the plausibility judgement task
 
 Main experiment:
 - analysis_script.R: the script used in the study to analyse the measured variable
