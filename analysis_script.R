@@ -111,8 +111,6 @@ ggplot(tgc_source, aes(x=Participant, y=prob)) + expand_limits(y = c(0, 1)) +
 #############################
 # Identification in general
 #############################
-# Identification by experiment conditions
-
 # Run the functions length, mean, and sd on the value of "iden" for each group, 
 # broken down by reg_degree + figure + identifier
 tgc_iden_cdt <- ddply(Data, c("Condition", "Novelty"), summarise,
@@ -317,15 +315,4 @@ plot(predictorEffects(glmer_C31, ~ Reg_num + Figure + C_S1 * C_change))
 plot(predictorEffects(glmer_C32, ~ Reg_num + Figure + C_S2 * C_change))
 plot(predictorEffects(glmer_C33, ~ Reg_num + Figure + Score), rows = 1, cols = 3)
 plot(predictorEffects(glmer_C34, ~ Figure + Score))
-
-
-################################################################################################
-# Other
-################################################################################################
-# Correlation between plausibility and regularity by pattern
-pattern <- c("P11", "P12", "P13", "P14", "P15", "P16", "P21", "P22", "P23", "P24", "P25", "P26")
-plausibility <- c(4.028708, 3.398058, 4.173913, 5.487685, 4.382775, 3.935644, 3.159204, 4.419048, 3.588517, 5.423077, 4.214286, 4.649746)
-regularity <- c(2.481481, 2.592593, 2.666667, 4.407407, 4.592593, 5.518519, 3.000000, 3.148148, 3.555556, 4.333333, 4.629630, 5.481481)
-cor(plausibility, regularity, method = "spearman")
-# 0.4195804
 
