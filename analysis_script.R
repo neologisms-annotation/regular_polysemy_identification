@@ -33,14 +33,14 @@ library(MuMIn)
 #############################
 # Preparing data
 #############################
-Data_part <- read.delim("Qualtrics_exp_data_part.txt", encoding = "ANSI")
+Data_part <- read.delim("exp_data_part.txt", encoding = "ANSI")
 Data_part$Gender <- as.factor(Data_part$Gender)
 Data_part$Version <- as.factor(Data_part$Version)
 Data0 <- droplevels(subset(Datac0, RT > 1, Participant != "P006" & Participant != "P013" &  Participant != "P072" &
                              Participant != "P087" & Participant != "P124" & Participant != "P133"))
 summary(Data_part)
 
-Datac0 <- read.delim("Qualtrics_exp_data.txt", encoding = "ANSI")
+Datac0 <- read.delim("exp_data.txt", encoding = "ANSI")
 Datac0 <- droplevels(subset(Datac0, Novelty != "Distractor" & Novelty != "Practice"))
 Datac0$Participant <- as.factor(Datac0$Participant)
 Datac0$ID <- as.factor(Datac0$ID)
