@@ -4,6 +4,7 @@
 getwd()
 setwd("C:/Users/...")
 
+
 #############################
 # Loading packages
 #############################
@@ -36,7 +37,7 @@ library(MuMIn)
 Data_part <- read.delim("exp_data_part.txt", encoding = "ANSI")
 Data_part$Gender <- as.factor(Data_part$Gender)
 Data_part$Version <- as.factor(Data_part$Version)
-Data0 <- droplevels(subset(Datac0, RT > 1, Participant != "P006" & Participant != "P013" &  Participant != "P072" &
+Data_part <- droplevels(subset(Data_part, Participant != "P006" & Participant != "P013" &  Participant != "P072" &
                              Participant != "P087" & Participant != "P124" & Participant != "P133"))
 summary(Data_part)
 
@@ -50,6 +51,7 @@ Datac0$Pattern <- as.factor(Datac0$Pattern)
 Datac0$C_S1 <- as.factor(Datac0$C_S1)
 Datac0$C_S2 <- as.factor(Datac0$C_S2)
 Datac0$C_change <- as.factor(Datac0$C_change)
+Datac0$Plausibility <- as.numeric(Datac0$Score)
 Datac0$Response <- as.factor(Datac0$Response)
 Datac0$Version <- as.factor(Datac0$Version)
 Datac0$Response_num <- as.factor(Datac0$Response)
@@ -147,12 +149,13 @@ AIC(glmer_id2,glmer_idR1, glmer_idR2, glmer_idR3)
 #glmer_idenR1 do not converge
 
 Anova(glmer_idR2)
-plot(predictorEffects(glmer_idR2, ~ Regularity + Figure), lines=list(multiline=TRUE),
+glmer_id_R2 = glmer(Identification ~ Regularity + Figure  + (1 + Figure | Participant) + (1 | Word),data=Data, family="binomial", control=glmerControl(optimizer="bobyqa"))
+plot(predictorEffects(glmer_id_R2, ~ Regularity + Figure), lines=list(multiline=TRUE),
      axes=list(grid=TRUE, y=list(lab="Prob(identification)", type ="response", lim=c(0, 1))))
 contrasts(Data$Figure) <-contr.Sum(levels(Data$Figure))
-glmer_idR2 = glmer(Identification ~ Regularity + Figure  + (1 + Figure | Participant) + (1 | Word),data=Data, family="binomial", control=glmerControl(optimizer="bobyqa"))
-summary(glmer_idR2)
-r.squaredGLMM(glmer_idR2)
+glmer_id_R2 = glmer(Identification ~ Regularity + Figure  + (1 + Figure | Participant) + (1 | Word),data=Data, family="binomial", control=glmerControl(optimizer="bobyqa"))
+summary(glmer_id_R2)
+r.squaredGLMM(glmer_id_R2)
 
 ##################################
 # Post-hoc analyses
@@ -164,7 +167,7 @@ r.squaredGLMM(glmer_idR2)
 glmerPL = glmer(Identification ~ Figure + Plausibility + (1 + Figure | Participant) + (1 | Word), data=Data, family="binomial", control=glmerControl(optimizer="bobyqa"))
 Anova(glmerPL, type = "III")
 r.squaredGLMM(glmerPL)
-plot(predictorEffects(glmerPL, ~ Figure + Plausibility), rows = 1, cols = 3)
+plot(predictorEffects(glmerPL, ~ Figure + Plausibility), rows = 1, cols = 2)
 contrasts(Data$Figure) <-contr.Sum(levels(Data$Figure))
 glmerPL = glmer(Identification ~ Figure + Plausibility + (1 + Figure | Participant) + (1 | Word), data=Data, family="binomial", control=glmerControl(optimizer="bobyqa"))
 summary(glmerPL)
